@@ -1,0 +1,10 @@
+{"t": 3.0, "speaker": "Dana", "text": "Thanks everyone. First topic: the invoice export keeps failing for our biggest accounts."}
+{"t": 12.0, "speaker": "Dana", "text": "Do you know why the export times out on large files?"}
+{"t": 22.0, "speaker": "me", "text": "Yes, above 50,000 rows it times out. I'll send the fix details by tomorrow."}
+{"t": 35.0, "speaker": "Dana", "text": "When is the next release going out?"}
+{"t": 36.0, "speaker": "Dana", "text": "And what does the team plan cost per seat?"}
+{"t": 50.0, "speaker": "me", "text": "Twelve per seat per month, billed annually."}
+{"t": 63.0, "speaker": "Priya", "text": "Does the team plan include single sign-on for our login setup?"}
+{"t": 75.0, "speaker": "Dana", "text": "Priya, can you share the security questionnaire by end of day?"}
+{"t": 80.0, "speaker": "Priya", "text": "Sure, I will send it today."}
+{"t": 92.0, "speaker": "Dana", "text": "Who do we contact if the export fails again?"}

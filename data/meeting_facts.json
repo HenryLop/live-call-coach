@@ -1,0 +1,12 @@
+[
+  {"id": "f1", "source": "tickets/EXP-12", "tags": ["export", "invoice", "csv", "timeout"],
+   "text": "The invoice export times out above 50,000 rows; a paged export fix is merged and waiting for release"},
+  {"id": "f2", "source": "email/2026-10-14 release notes", "tags": ["release", "date", "schedule"],
+   "text": "The next release is planned for Thursday 29 October with a rollback plan attached"},
+  {"id": "f3", "source": "docs/pricing.md", "tags": ["pricing", "seats", "plan", "cost"],
+   "text": "The team plan costs 12 per seat per month, billed annually, with a 10 seat minimum"},
+  {"id": "f4", "source": "notes/kickoff.md", "tags": ["owner", "contact", "support", "escalation"],
+   "text": "Escalations go to the support lead first, then to the platform on-call"},
+  {"id": "f5", "source": "docs/sso.md", "tags": ["sso", "login", "security", "saml"],
+   "text": "Single sign-on supports SAML 2.0 and is available on the team plan"}
+]

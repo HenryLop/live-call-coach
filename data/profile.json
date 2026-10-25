@@ -1,0 +1,18 @@
+[
+  {"id": "story-batch", "source": "profile", "tags": ["pipeline", "performance", "data", "latency"],
+   "text": "Cut the nightly order pipeline from 6 hours to 90 minutes by partitioning the load and caching dimension lookups"},
+  {"id": "story-outage", "source": "profile", "tags": ["incident", "failure", "mistake", "production", "recovery"],
+   "text": "Caused a stale-report incident after a schema change; added a contract test and a dry-run step so it could not recur"},
+  {"id": "story-conflict", "source": "profile", "tags": ["conflict", "disagree", "stakeholder", "team"],
+   "text": "Disagreed with a product lead on a deadline; showed a two-option cost table and agreed on a smaller first release"},
+  {"id": "story-mentor", "source": "profile", "tags": ["leadership", "mentor", "team", "junior"],
+   "text": "Mentored two junior engineers through their first on-call rotation with a written runbook and weekly reviews"},
+  {"id": "story-migration", "source": "profile", "tags": ["migration", "warehouse", "cloud", "project"],
+   "text": "Led a warehouse migration of 140 tables with a parallel run and row-count checks before cutover"},
+  {"id": "story-gap", "source": "profile", "tags": ["gap", "career", "break", "leave", "learning"],
+   "text": "Took four months between roles to finish a streaming course and build a small open-source ingestion tool"},
+  {"id": "skills", "source": "profile", "tags": ["skills", "tools", "python", "sql", "stack"],
+   "text": "Daily tools are Python, SQL, Airflow and dbt; comfortable with Kafka for streaming work"},
+  {"id": "goal", "source": "profile", "tags": ["why", "company", "motivation", "role", "goal"],
+   "text": "Wants a role with ownership of data quality for a product team, which this posting describes"}
+]

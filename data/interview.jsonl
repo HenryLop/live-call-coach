@@ -1,0 +1,11 @@
+{"t": 2.0, "speaker": "Interviewer", "text": "Thanks for joining. Let's start easy: why does this role interest you?"}
+{"t": 14.0, "speaker": "me", "text": "I want to own data quality for a product team, and your posting says exactly that."}
+{"t": 26.0, "speaker": "Interviewer", "text": "Tell me about a time you made a pipeline much faster."}
+{"t": 27.0, "speaker": "Interviewer", "text": "Sorry, to be specific, which tools were involved in that work?"}
+{"t": 41.0, "speaker": "me", "text": "Mostly Python, SQL and Airflow, with caching in front of the dimension tables."}
+{"t": 55.0, "speaker": "Interviewer", "text": "What was your biggest mistake in production, and how did you recover from the failure?"}
+{"t": 70.0, "speaker": "me", "text": "A schema change broke a report; I added a contract test afterwards."}
+{"t": 82.0, "key": "escalate"}
+{"t": 90.0, "speaker": "Interviewer", "text": "Did you ever disagree with a product lead about a deadline?"}
+{"t": 108.0, "speaker": "me", "text": "Yes, and a cost table helped us agree."}
+{"t": 121.0, "speaker": "Interviewer", "text": "I see a few months between your last two roles. What happened there?"}
