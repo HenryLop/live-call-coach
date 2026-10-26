@@ -91,7 +91,23 @@ class MeetingTests(unittest.TestCase):
         pipe, _ = meeting(events("meeting.jsonl"))
         pairs = {(c["who"], c["when"]) for c in pipe.ledger}
         self.assertIn(("me", "by tomorrow"), pairs)
-        self.assertIn(("Priya", "by end of day"), pairs)
+        self.assertIn(("Priya", "today"), pairs)
+
+    def test_promise_confirms_the_open_request(self):
+        pipe, recs = meeting(events("meeting.jsonl"))
+        priya = [c for c in pipe.ledger if c["who"] == "Priya"]
+        self.assertEqual(len(priya), 1)  # the answer updates the row, it does not add one
+        self.assertTrue(priya[0]["confirmed"])
+        self.assertEqual(priya[0]["when"], "today")
+        self.assertEqual(priya[0]["asked_by"], "Dana")
+        self.assertEqual(len(pipe.ledger), 2)
+        self.assertEqual([r["kind"] for r in recs].count("commitment_update"), 1)
+
+    def test_promise_without_a_request_is_a_new_row(self):
+        pipe = engine.MeetingBrain(adapters.StubLLM(), Knowledge([]))
+        pipe.feed({"t": 1.0, "speaker": "Sam", "text": "I will send it today."})
+        self.assertEqual(len(pipe.ledger), 1)
+        self.assertFalse(pipe.ledger[0].get("confirmed"))
 
     def test_stale_card_dropped(self):
         _, recs = meeting(events("meeting.jsonl"))

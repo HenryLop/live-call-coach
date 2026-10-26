@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>live-call-coach UI demo</title>
+<meta name="description" content="A scripted replay of the live-call-coach behaviour: transcript, quick card, deep card and the commitments ledger. No backend.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <header class="bar">
+    <div class="brand"><span class="mark" aria-hidden="true"></span><b>live-call-coach</b><span class="tag">UI demo</span></div>
+    <div class="tabs" role="tablist" aria-label="Mode">
+      <button role="tab" id="tab-interview" aria-controls="main" aria-selected="true" data-view="interview">Interview</button>
+      <button role="tab" id="tab-meeting" aria-controls="main" aria-selected="false" tabindex="-1" data-view="meeting">Meeting</button>
+    </div>
+    <div class="ctrl" role="group" aria-label="Playback">
+      <button id="play" class="primary" aria-label="Pause">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path id="play-ico" fill="currentColor" d="M3 2h4v12H3zM9 2h4v12H9z"/></svg>
+        <span id="play-txt">Pause</span><kbd>Space</kbd>
+      </button>
+      <button id="restart" aria-label="Restart">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M3 8a5 5 0 1 0 1.6-3.7M3 2.5v3h3"/></svg>
+        <span>Restart</span><kbd>R</kbd>
+      </button>
+      <button id="speed" aria-label="Playback speed 1x">
+        <span id="speed-txt">1x</span><kbd>S</kbd>
+      </button>
+      <span class="clock" id="clock" aria-hidden="true">0:00 / 0:00</span>
+    </div>
+  </header>
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+
+  <main id="main" class="view-interview" role="tabpanel">
+    <section class="col live" aria-label="Transcript">
+      <h2><span>Transcript</span><span class="status" id="status"><i class="dot"></i><span id="status-txt">Listening</span></span></h2>
+      <div class="tx" id="tx"></div>
+    </section>
+    <section class="col cards" aria-label="Cards">
+      <h2><span>Cards</span><span class="note" id="cards-note"></span></h2>
+      <div class="stack" id="stack" aria-live="polite"></div>
+      <div class="foot" id="cardfoot">
+        <button id="esc"><span>Go deeper</span><kbd>E</kbd></button>
+        <span class="hint" id="hint" role="status"></span>
+      </div>
+    </section>
+    <section class="col side" id="side" aria-label="Context"></section>
+  </main>
+
+  <footer class="legend">
+    <span>Scripted replay of the invented calls in <code>data/</code>. No audio, no network, no model behind these cards.</span>
+    <span class="keys"><kbd>Space</kbd> play <kbd>R</kbd> restart <kbd>S</kbd> speed <kbd>E</kbd> go deeper</span>
+  </footer>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

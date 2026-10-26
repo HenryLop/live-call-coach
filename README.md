@@ -4,6 +4,18 @@ A live coach for two kinds of calls, in one package. In `--mode interview` it li
 
 ![Demo](docs/demo.gif)
 
+## UI demo
+
+Open `ui/index.html` by double-clicking it. It is a static front end with no backend, no build step and no network: a scripted replay of the two invented calls in `data/`, with an Interview tab and a Meeting tab.
+
+- **Interview.** The interviewer's lines stream in word by word. After each question, a quick card arrives 1.5 s later with an opening line, three points and the hard-question flag. A hard question also gets a deep card, which cites the notes it used (they light up on the right). Press `E` to ask for a deep card on any other question. When a new question starts before a card is ready, that card is dropped and says so.
+- **Meeting.** Each question gets a card with a line to say and facts with their sources. The commitments ledger (who, what, when) fills as people promise things, and a promise that answers a request updates that row instead of adding one. The reader panel shows its one allowed click, turning on captions, and that it stays read-only.
+- **Controls.** `Space` plays and pauses, `R` restarts, `S` switches between 1x and 2x, `E` goes deeper. Everything works from the keyboard, and `prefers-reduced-motion` turns the animation off. The layout works from 390 px wide up.
+
+The replay timing is compressed (gaps between lines are shortened) but card latencies are not: they are the stub's tier latencies (1.5 s quick, 5 s deep, 2 s meeting). The card wording is written for the demo; the hard flags, stale drops, retrieved notes and commitments come from running the pipeline on the bundled transcripts. `python tools/export_ui_data.py` regenerates `ui/data.js` from `data/`, and a test checks that it is in sync.
+
+Short promo cuts (16:9 and vertical, per mode) and ready post copy are in `docs/promo/`.
+
 ## Quick start
 
 ```
@@ -49,6 +61,7 @@ Python 3.8+, standard library only. `faster-whisper` is optional. No GPU is requ
 - Meeting mode extracts commitments from every utterance ("I'll send it by tomorrow", "Priya, can you share it by end of day") into a ledger and attaches it to each card.
 - `knowledge.py` is a small keyword retrieval over `data/profile.json` (interview notes) or `data/meeting_facts.json` (facts with a source).
 - `reader.py` is the meeting reader. It writes `events.jsonl`, `live.json` and `transcript.md` to a session folder. Its only permitted click is turning on captions: `safe_click` checks an allow-list, and a test scans the source for typing, key presses and form filling. A saved session can be replayed in place of a live call.
+- `ui/` is the static UI demo (`index.html`, `style.css`, `app.js`, and `data.js` generated from `data/` by `tools/export_ui_data.py`).
 - `sim.py` is the offline simulator: a fake page with partial and final captions and decoy buttons (mute, leave, chat).
 - A driver for a real video-call page needs `click(name)`, `poll()` and `closed`; none is bundled.
 
@@ -56,7 +69,7 @@ Python 3.8+, standard library only. `faster-whisper` is optional. No GPU is requ
 
 Measured by running the code in this repository:
 
-- 19 tests pass (`python -m unittest discover -s tests`), including the stale-card drop, the commitments ledger and the reader's allow-list.
+- 22 tests pass (`python -m unittest discover -s tests`), including the stale-card drop, the commitments ledger and the reader's allow-list.
 - The bundled interview produces 8 cards and drops 1 as stale; the bundled meeting produces 5 cards and drops 1.
 - The stub pipeline spends a median of about 0.04 ms per card (printed by the demo on each run). The 1.5 s, 5 s and 2 s tier latencies are simulated constants, not measurements of a real model.
 

@@ -8,5 +8,7 @@
   {"id": "f4", "source": "notes/kickoff.md", "tags": ["owner", "contact", "support", "escalation"],
    "text": "Escalations go to the support lead first, then to the platform on-call"},
   {"id": "f5", "source": "docs/sso.md", "tags": ["sso", "login", "security", "saml"],
-   "text": "Single sign-on supports SAML 2.0 and is available on the team plan"}
+   "text": "Single sign-on supports SAML 2.0 and is available on the team plan"},
+  {"id": "f6", "source": "docs/security-questionnaire.md", "tags": ["security", "questionnaire", "template", "form"],
+   "text": "The security questionnaire template is in the shared drive under security/, last updated in September"}
 ]

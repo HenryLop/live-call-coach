@@ -107,6 +107,13 @@ class MeetingBrain(Pipeline):
         if "text" not in ev:
             return out
         for c in text.commitments(ev["speaker"], ev["text"], ev["t"]):
+            open_req = self._open_request(c)
+            if open_req is not None:  # a promise that answers a request already in the ledger
+                open_req["confirmed"] = True
+                if c["when"]:
+                    open_req["when"] = c["when"]
+                out.append(dict(open_req, kind="commitment_update", t=ev["t"]))
+                continue
             key = (c["who"].lower(), c["what"].lower())
             if all((x["who"].lower(), x["what"].lower()) != key for x in self.ledger):
                 self.ledger.append(c)
@@ -117,6 +124,15 @@ class MeetingBrain(Pipeline):
             self.question = ev["text"]
             self._schedule(ev["t"], "meeting", lambda: self._card(self.question))
         return out
+
+    def _open_request(self, c):
+        """The unconfirmed request this promise answers: same person, asked earlier, not yet confirmed."""
+        if c["asked_by"] is not None:
+            return None
+        for x in self.ledger:
+            if x["asked_by"] and not x.get("confirmed") and x["who"].lower() == c["who"].lower():
+                return x
+        return None
 
     def _card(self, q):
         hits = self.kb.search(q, 3)

@@ -12,6 +12,9 @@ def render(rec, width=72):
     if k == "commitment":
         return "[%5.1fs] commitment: %s -> %s%s" % (rec["t"], rec["who"], rec["what"],
                                                    " (%s)" % rec["when"] if rec["when"] else "")
+    if k == "commitment_update":
+        return "[%5.1fs] confirmed: %s -> %s%s" % (rec["t"], rec["who"], rec["what"],
+                                                  " (%s)" % rec["when"] if rec["when"] else "")
     head = "[%5.1fs] %s tier, question #%d: %s" % (rec["t_ready"], rec["tier"].upper(), rec["qid"], rec["question"])
     body = []
     if rec["tier"] == "quick":
